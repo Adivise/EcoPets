@@ -18,9 +18,7 @@ base {
 }
 
 dependencies {
-    project.project(project(":eco-core").path).subprojects {
-        implementation(this)
-    }
+    implementation(project(":eco-core:core-plugin"))
 }
 
 allprojects {
