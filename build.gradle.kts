@@ -17,10 +17,14 @@ base {
     archivesName.set(project.name)
 }
 
+val loaders by configurations.creating
+
 dependencies {
     project.project(project(":eco-core").path).subprojects {
         implementation(project(this.path, "shadow"))
     }
+    
+    loaders("com.willfp:libreforge:$libreforgeVersion:shadow")
 }
 
 allprojects {
@@ -53,6 +57,10 @@ allprojects {
 
     tasks {
         shadowJar {
+            if (project == rootProject) {
+                from(loaders)
+            }
+            
             mergeServiceFiles()
             exclude("META-INF/**")
             relocate("com.willfp.libreforge.loader", "com.willfp.ecopets.libreforge.loader")
