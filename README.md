@@ -1,4 +1,5 @@
 <div align="center">
+  <img src="https://builtbybit.com/attachments/mcm-banner-png.513828/?preset=cardr1" alt="EcoPets Banner">
   <h1>✨ EcoPets (Auto-Build Repository)</h1>
   <p><b>This is an automated build repository synchronized with the <a href="https://github.com/Auxilor/EcoPets">Auxilor/EcoPets</a></b></p>
   <p>We provide freshly built <code>.jar</code> files directly from the latest upstream source code.</p>
