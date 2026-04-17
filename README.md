@@ -4,7 +4,7 @@
   <p>We provide freshly built <code>.jar</code> files directly from the latest upstream source code.</p>
   <br>
   <a href="https://github.com/Adivise/EcoPets/releases">
-    <img alt="Download Auto-Build" src="https://img.shields.io/github/v/release/Adivise/EcoPets?color=success&label=Download%20Latest%20Auto-Build&style=for-the-badge"/>
+    <img alt="Download Auto-Build" src="https://img.shields.io/github/v/release/Adivise/EcoPets?color=success&label=Download&style=for-the-badge"/>
   </a>
 </div>
 
