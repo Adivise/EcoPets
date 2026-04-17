@@ -18,7 +18,9 @@ base {
 }
 
 dependencies {
-    implementation(project(":eco-core:core-plugin"))
+    project.project(project(":eco-core").path).subprojects {
+        implementation(project(this.path, "shadow"))
+    }
 }
 
 allprojects {
@@ -51,6 +53,7 @@ allprojects {
 
     tasks {
         shadowJar {
+            mergeServiceFiles()
             exclude("META-INF/**")
             relocate("com.willfp.libreforge.loader", "com.willfp.ecopets.libreforge.loader")
             relocate("com.willfp.ecomponent", "com.willfp.ecopets.ecomponent")
