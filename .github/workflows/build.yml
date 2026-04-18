@@ -89,7 +89,8 @@ jobs:
           rel_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/releases/tag/${TAG_NAME}"
           dl_url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG_NAME}/EcoPets.v${VERSION}.jar"
           
-          jq -n \
+          # Create JSON payload
+          payload=$(jq -n \
             --arg plugin_name "EcoPets" \
             --arg version "$VERSION" \
             --arg tag "$TAG_NAME" \
@@ -105,4 +106,13 @@ jobs:
               release_url: $release_url,
               download_url: $download_url,
               repository: $repository
-            }' | curl -fsS -X POST -H "Content-Type: application/json" -H "x-api-key: $NOTIFY_API_KEY" -d @- "$NOTIFY_API_URL"
+            }')
+          
+          # Generate HMAC signature (hex)
+          signature=$(echo -n "$payload" | openssl dgst -sha256 -hmac "$NOTIFY_API_KEY" | sed 's/^.*= //')
+          
+          # Send request with signature
+          echo "$payload" | curl -fsS -X POST \
+            -H "Content-Type: application/json" \
+            -H "x-api-signature: $signature" \
+            -d @- "$NOTIFY_API_URL"
